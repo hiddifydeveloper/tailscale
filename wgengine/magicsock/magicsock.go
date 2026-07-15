@@ -1501,6 +1501,10 @@ var errNetworkDown = errors.New("magicsock: network down")
 
 func (c *Conn) networkDown() bool { return !c.networkUp.Load() }
 
+func (c *Conn) SendWithoutModify(buffs [][]byte, ep conn.Endpoint, offset int) (err error) {
+	return c.Send(buffs, ep, offset)
+}
+
 // Send implements conn.Bind.
 //
 // See https://pkg.go.dev/github.com/tailscale/wireguard-go/conn#Bind.Send
